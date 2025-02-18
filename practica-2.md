@@ -1,7 +1,7 @@
 # Datos personales
 - **Nombre:** Ricardo Robles Abad
 - **Edad:** 20 años
-- **Fotografía:** ![Foto](Imagen.jpeg)
+- **Fotografía:** ![Foto](Imagen.jpeg)  
 
 # Presentación
 Mi nombre es Ricardo Robles Abad. Soy estudiante de Ingeniería en Ciberseguridad, tengo 20 años y me considero una persona curiosa, observadora y alegre.
