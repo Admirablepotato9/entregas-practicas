@@ -1,0 +1,131 @@
+/* 1. Tamaño de letra */
+html {
+    font-size: 100%;
+}
+
+body {
+    font-size: 1rem;
+}
+
+/* 2. Box-sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 3. Familia de fuente de Google Fonts */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* 4. Color de letra y fondo */
+body {
+    color: #333; /* Color de letra */
+    background-color: #f4f4f4; /* Color de fondo */
+}
+
+/* 5. Color de letra para enlaces */
+a {
+    color: #007BFF; /* Color azul */
+    text-decoration: none; /* Quitar subrayado */
+}
+
+/* 6. Color de letra en estado hover para enlaces */
+a:hover {
+    color: #0056b3; /* Color azul más oscuro */
+}
+
+/* 7. Imágenes responsivas */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 8. Variables CSS */
+:root {
+    --color-primary: #007BFF;
+    --color-secondary: #6c757d;
+    --color-accent: #28a745;
+}
+
+/* Aplicar variables */
+header {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 1rem;
+}
+
+footer {
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* 9. Selectores de identificador */
+#inicio {
+    padding: 2rem;
+    background-color: white;
+}
+
+#acerca {
+    padding: 2rem;
+    background-color: #e9ecef;
+}
+
+#habilidades {
+    padding: 2rem;
+    background-color: white;
+}
+
+/* 10. Selectores de clases */
+.text-center {
+    text-align: center;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: white;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* 11. Selectores descendientes */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav ul li a {
+    font-weight: bold;
+}
+
+section article {
+    margin-bottom: 1rem;
+}
+
+/* 12. Selectores de grupo */
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1rem;
+}
+
+p, li {
+    line-height: 1.6;
+}
+
+header, footer {
+    padding: 1rem;
+}
