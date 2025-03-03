@@ -1,0 +1,131 @@
+/* Estilos base */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #F3E5F5; /* Fondo claro */
+}
+
+header {
+    background-color: #6A1B9A; /* Morado oscuro */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 1rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    background-color: white; /* Fondo blanco para secciones */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+footer {
+    background-color: #6A1B9A; /* Morado oscuro */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Estilos para tarjetas */
+.card {
+    border: 1px solid #CE93D8; /* Morado claro */
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilos para botones */
+.button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #9C27B0; /* Morado medio */
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.button:hover {
+    background-color: #7B1FA2; /* Morado más oscuro al hacer hover */
+}
+
+/* Estilos para enlaces */
+a {
+    color: #9C27B0; /* Morado medio */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #7B1FA2; /* Morado más oscuro al hacer hover */
+}
+
+/* Estilos para imágenes */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Estilos responsivos */
+@media (max-width: 767px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        margin: 1rem 0;
+    }
+}
+
+@media (min-width: 768px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    #proyectos {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    #contacto {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    main {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #proyectos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
