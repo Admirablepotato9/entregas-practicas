@@ -1,17 +1,28 @@
 /* Estilos base */
+:root {
+    --color-primary: #6A1B9A; /* Morado oscuro */
+    --color-secondary: #9C27B0; /* Morado medio */
+    --color-accent: #CE93D8; /* Morado claro */
+    --color-background: #F3E5F5; /* Fondo claro */
+    --color-text: #333; /* Texto principal */
+    --color-white: #FFFFFF; /* Blanco */
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: #F3E5F5; /* Fondo claro */
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.6;
 }
 
 header {
-    background-color: #6A1B9A; /* Morado oscuro */
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-white);
     padding: 1rem;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
@@ -23,9 +34,14 @@ nav ul {
 }
 
 nav ul li a {
-    color: white;
+    color: var(--color-white);
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--color-accent);
 }
 
 main {
@@ -34,63 +50,64 @@ main {
 
 section {
     margin-bottom: 2rem;
-    background-color: white; /* Fondo blanco para secciones */
+    background-color: var(--color-white);
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 footer {
-    background-color: #6A1B9A; /* Morado oscuro */
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-white);
     text-align: center;
     padding: 1rem;
+    margin-top: 2rem;
 }
 
 /* Estilos para tarjetas */
 .card {
-    border: 1px solid #CE93D8; /* Morado claro */
+    border: 1px solid var(--color-accent);
     border-radius: 8px;
     padding: 1rem;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: var(--color-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilos para botones */
 .button {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: #9C27B0; /* Morado medio */
-    color: white;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
     border-radius: 4px;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s ease; /* Transición suave */
+    transition: background-color 0.3s ease;
 }
 
 .button:hover {
-    background-color: #7B1FA2; /* Morado más oscuro al hacer hover */
-}
-
-/* Estilos para enlaces */
-a {
-    color: #9C27B0; /* Morado medio */
-    text-decoration: none;
-}
-
-a:hover {
-    color: #7B1FA2; /* Morado más oscuro al hacer hover */
+    background-color: var(--color-primary);
 }
 
 /* Estilos para imágenes */
 img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 8px;
 }
 
 /* Estilos responsivos */
 @media (max-width: 767px) {
+    header {
+        padding: 0.5rem;
+    }
+
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -99,9 +116,17 @@ img {
     .card {
         margin: 1rem 0;
     }
+
+    main {
+        padding: 0.5rem;
+    }
+
+    section {
+        padding: 0.5rem;
+    }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     main {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -122,7 +147,9 @@ img {
 
 @media (min-width: 1024px) {
     main {
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
     }
 
     #proyectos {
