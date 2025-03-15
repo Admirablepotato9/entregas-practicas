@@ -53,11 +53,11 @@ function agregarAlCarrito(index) {
         }
         mostrarCarrito();
         mostrarProductos();
-        alert(`${cantidad} ${producto.nombre}(s) agregado(s) al carrito.`);
+        mostrarMensaje(`${cantidad} ${producto.nombre}(s) agregado(s) al carrito.`);
     } else {
-        alert("Cantidad no válida o stock insuficiente.");
+        mostrarMensaje("Cantidad no válida o stock insuficiente.", "error");
     }
-}
+}   
 
 // 6. Función para mostrar el carrito
 function mostrarCarrito() {
@@ -102,7 +102,7 @@ function eliminarDelCarrito(index) {
 
 function procesarCompra() {
     if (carrito.length === 0) {
-        alert("El carrito está vacío.");
+        mostrarMensaje("El carrito está vacío.", "error");
         return;
     }
 
@@ -113,8 +113,7 @@ function procesarCompra() {
     mostrarTiempoRestante(3); // Muestra la cuenta regresiva de 3 segundos
 
     setTimeout(() => {
-        console.log(`Total a pagar: $${totalConDescuento}`);
-        alert(`Total a pagar: $${totalConDescuento}`);
+        mostrarMensaje(`Total a pagar: $${totalConDescuento}`);
         carrito.forEach(item => {
             const producto = productos.find(p => p.nombre === item.nombre);
             producto.stock -= item.cantidad;
@@ -139,6 +138,18 @@ function mostrarTiempoRestante(segundos) {
         }
     }, 1000);
 }
+
+// Función para mostrar mensajes en la UI
+function mostrarMensaje(mensaje, tipo = "info") {
+    const contenedorMensaje = document.getElementById("mensaje");
+    contenedorMensaje.textContent = mensaje;
+    contenedorMensaje.style.backgroundColor = tipo === "error" ? "#ff6b6b" : "#CE93D8";
+    setTimeout(() => {
+        contenedorMensaje.textContent = "";
+    }, 3000); // El mensaje desaparece después de 3 segundos
+}
+
+
 
 // Inicializar la tienda
 mostrarProductos();
