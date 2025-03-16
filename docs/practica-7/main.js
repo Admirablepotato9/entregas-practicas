@@ -11,11 +11,16 @@ let carrito = [];
 
 // 3. Función para mostrar productos
 function mostrarProductos() {
-    const contenedorProductos = document.getElementById("productos");
-    contenedorProductos.innerHTML = "<h2>Productos Disponibles</h2>";
+    const contenedorTarjetas = document.querySelector(".productos");
+    contenedorTarjetas.innerHTML = ""; // Limpiamos el contenedor de tarjetas
+
+    // Generamos las tarjetas de productos
     productos.forEach((producto, index) => {
-        contenedorProductos.innerHTML += `
-            <div class="producto">
+        const tarjetaProducto = document.createElement("div");
+        tarjetaProducto.className = "producto";
+        tarjetaProducto.innerHTML = `
+            <img src="assets/images/${producto.nombre.toLowerCase()}.jpg" alt="${producto.nombre}">
+            <div class="info">
                 <h3>${producto.nombre}</h3>
                 <p>Precio: $${producto.precio}</p>
                 <p>Stock: ${producto.stock}</p>
@@ -27,6 +32,7 @@ function mostrarProductos() {
                 <button onclick="agregarAlCarrito(${index})">Agregar al Carrito</button>
             </div>
         `;
+        contenedorTarjetas.appendChild(tarjetaProducto);
     });
 }
 
@@ -57,7 +63,7 @@ function agregarAlCarrito(index) {
     } else {
         mostrarMensaje("Cantidad no válida o stock insuficiente.", "error");
     }
-}   
+}
 
 // 6. Función para mostrar el carrito
 function mostrarCarrito() {
@@ -68,15 +74,26 @@ function mostrarCarrito() {
     } else {
         carrito.forEach((item, index) => {
             contenedorCarrito.innerHTML += `
-                <div class="producto">
+                <div class="item">
                     <h3>${item.nombre}</h3>
                     <p>Precio: $${item.precio}</p>
                     <p>Cantidad: ${item.cantidad}</p>
+                    <p>Dirección: ${item.direccion || "No especificada"}</p>
+                    <p>Método de pago: ${item.metodoPago || "No especificado"}</p>
                     <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
                 </div>
             `;
         });
-        contenedorCarrito.innerHTML += `<p>Total: $${calcularTotal()}</p>`;
+
+        const total = calcularTotal();
+        const descuento = total > 100 ? total * 0.1 : 0; // Calculamos el descuento
+        const totalConDescuento = total - descuento;
+
+        contenedorCarrito.innerHTML += `
+            <p class="total">Subtotal: $${total.toFixed(2)}</p>
+            ${descuento > 0 ? `<p class="descuento">Descuento (10%): -$${descuento.toFixed(2)}</p>` : ''}
+            <p class="total">Total a pagar: $${totalConDescuento.toFixed(2)}</p>
+        `;
     }
 }
 
@@ -94,12 +111,13 @@ function aplicarDescuento(total) {
 function eliminarDelCarrito(index) {
     const item = carrito[index];
     const producto = productos.find(p => p.nombre === item.nombre);
-    producto.stock += item.cantidad;
+    producto.stock += item.cantidad; // Devolvemos el stock al eliminar del carrito
     carrito.splice(index, 1);
     mostrarCarrito();
     mostrarProductos();
 }
 
+// 10. Función para procesar la compra
 function procesarCompra() {
     if (carrito.length === 0) {
         mostrarMensaje("El carrito está vacío.", "error");
@@ -107,20 +125,26 @@ function procesarCompra() {
     }
 
     const total = calcularTotal();
-    const totalConDescuento = aplicarDescuento(total);
+    const descuento = total > 100 ? total * 0.1 : 0; // Calculamos el descuento
+    const totalConDescuento = total - descuento;
 
     console.log("Procesando compra...");
     mostrarTiempoRestante(3); // Muestra la cuenta regresiva de 3 segundos
 
     setTimeout(() => {
-        mostrarMensaje(`Total a pagar: $${totalConDescuento}`);
+        mostrarMensaje(`Total a pagar: $${totalConDescuento.toFixed(2)}`);
+
+        // Actualizamos el stock después de procesar la compra
         carrito.forEach(item => {
             const producto = productos.find(p => p.nombre === item.nombre);
-            producto.stock -= item.cantidad;
+            if (producto) {
+                producto.stock -= item.cantidad; // Restamos el stock
+            }
         });
-        carrito = [];
-        mostrarCarrito();
-        mostrarProductos();
+
+        carrito = []; // Vaciamos el carrito
+        mostrarCarrito(); // Actualizamos la vista del carrito
+        mostrarProductos(); // Actualizamos la vista de los productos
     }, 3000);
 }
 
@@ -142,14 +166,20 @@ function mostrarTiempoRestante(segundos) {
 // Función para mostrar mensajes en la UI
 function mostrarMensaje(mensaje, tipo = "info") {
     const contenedorMensaje = document.getElementById("mensaje");
+    if (!contenedorMensaje) {
+        console.error("El contenedor de mensajes no existe en el DOM.");
+        return;
+    }
+
     contenedorMensaje.textContent = mensaje;
     contenedorMensaje.style.backgroundColor = tipo === "error" ? "#ff6b6b" : "#CE93D8";
+    contenedorMensaje.style.display = "block"; // Mostrar el mensaje
+
     setTimeout(() => {
         contenedorMensaje.textContent = "";
-    }, 3000); // El mensaje desaparece después de 3 segundos
+        contenedorMensaje.style.display = "none"; // Ocultar el mensaje después de 5 segundos
+    }, 5000); // Cambiamos de 3000 a 5000 milisegundos (5 segundos)
 }
-
-
 
 // Inicializar la tienda
 mostrarProductos();

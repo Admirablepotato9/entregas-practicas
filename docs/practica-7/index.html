@@ -3,65 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Tienda en Línea</title>
+    <title>Tienda en Línea</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Estilos generales */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 1rem;
+            padding: 0;
             background-color: #F3E5F5;
             color: #333;
         }
+
         h1 {
             color: #6A1B9A;
-        }
-        .producto {
-            border: 1px solid #CE93D8;
-            border-radius: 8px;
+            text-align: center;
             padding: 1rem;
-            margin: 1rem 0;
             background-color: white;
+            margin: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        button {
-            background-color: #9C27B0;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
+
+        #mensaje {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.75rem 1.5rem;
+            text-align: center;
             border-radius: 4px;
-            cursor: pointer;
+            max-width: 300px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        button:hover {
-            background-color: #7B1FA2;
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
         }
+
+        /* Estilos para los productos */
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .producto {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .producto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .producto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .producto .info {
+            padding: 1rem;
+        }
+
+        .producto h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #6A1B9A;
+        }
+
+        .producto p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
         .cantidad {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            margin: 1rem 0;
         }
+
         .cantidad button {
+            background-color: #9C27B0;
+            color: white;
+            border: none;
             padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
         }
+
         .cantidad input {
             width: 50px;
             text-align: center;
-        }
-        .mensaje {
-            padding: 1rem;
-            margin-bottom: 1rem;
+            border: 1px solid #CE93D8;
             border-radius: 4px;
-            background-color: #CE93D8;
+            padding: 0.5rem;
+        }
+
+        .producto button {
+            width: 100%;
+            background-color: #6A1B9A;
             color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .producto button:hover {
+            background-color: #7B1FA2;
+        }
+
+        /* Estilos para el carrito */
+        .carrito {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carrito h2 {
+            margin: 0;
+            color: #6A1B9A;
+        }
+
+        .carrito .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #F3E5F5;
+            background-color: #fff;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .carrito .item h3 {
+            flex: 2;
+            margin: 0;
+            font-size: 1rem;
+            color: #6A1B9A;
+        }
+
+        .carrito .item p {
+            flex: 1;
+            margin: 0 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
             text-align: center;
+        }
+
+        .carrito .item button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 1rem;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            max-width: 80px;
+            width: 100%;
+        }
+
+        .carrito .item button:hover {
+            background-color: #ff4c4c;
+        }
+
+        .carrito .total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .carrito .descuento {
+            color: #28a745;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+
+        .carrito button {
+            width: 100%;
+            background-color: #9C27B0;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carrito button:hover {
+            background-color: #7B1FA2;
+        }
+
+        /* Estilos para el botón de procesar compra */
+        .procesar-compra {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .procesar-compra button {
+            background-color: #6A1B9A;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .procesar-compra button:hover {
+            background-color: #7B1FA2;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .productos {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .carrito .item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .carrito .item h3,
+            .carrito .item p {
+                flex: none;
+                width: 100%;
+                text-align: left;
+                margin: 0.25rem 0;
+            }
+
+            .carrito .item button {
+                margin-left: 0;
+                margin-top: 0.5rem;
+                width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .productos {
+                grid-template-columns: 1fr;
+            }
+
+            .carrito .item {
+                padding: 0.5rem;
+            }
+
+            .carrito .item h3 {
+                font-size: 0.9rem;
+            }
+
+            .carrito .item p {
+                font-size: 0.8rem;
+            }
+
+            .carrito .item button {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.4rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="mensaje" class="mensaje"></div>
-    <h1>Simulador de Tienda en Línea</h1>
-    <div id="productos"></div>
-    <div id="carrito"></div>
-    <button onclick="procesarCompra()">Procesar Compra</button>
+    <h1>Tienda en Línea</h1>
+    <div id="mensaje"></div> <!-- Contenedor para mensajes -->
+    <div class="contenedor">
+        <div id="productos" class="productos"></div>
+        <div id="carrito" class="carrito"></div>
+        <div class="procesar-compra">
+            <button onclick="procesarCompra()">Procesar Compra</button>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
