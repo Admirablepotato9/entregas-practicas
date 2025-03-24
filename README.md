@@ -40,7 +40,7 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 
 ### Práctica 9: Formularios con REGEX
 - **Descripción:** Añade formularios para el registro y el login, comprobando cada campo con regex.
-- **Enlace:** [Ver Prá  ctica 9](https://admirablepotato9.github.io/entregas-practicas/practica-9/)
+- **Enlace:** [Ver Práctica 9](https://admirablepotato9.github.io/entregas-practicas/practica-9/)
 
 ---
 
