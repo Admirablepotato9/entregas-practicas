@@ -38,9 +38,9 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 - **Descripción:** Mejora del simulador de tienda en línea con interacción en el navegador utilizando el DOM y eventos en JavaScript.
 - **Enlace:** [Ver Práctica 8](https://admirablepotato9.github.io/entregas-practicas/practica-8/)
 
-### Práctica 9: Tienda en Línea con DOM y Eventos
+### Práctica 9: Formularios con REGEX
 - **Descripción:** Añade formularios para el registro y el login, comprobando cada campo con regex.
-- **Enlace:** [Ver Práctica 9](https://admirablepotato9.github.io/entregas-practicas/practica-9/)
+- **Enlace:** [Ver Prá  ctica 9](https://admirablepotato9.github.io/entregas-practicas/practica-9/)
 
 ---
 
