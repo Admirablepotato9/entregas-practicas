@@ -42,11 +42,17 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 - **Descripción:** Añade formularios para el registro y el login, comprobando cada campo con regex.
 - **Enlace:** [Ver Práctica 9](https://admirablepotato9.github.io/entregas-practicas/practica-9/)
 
+### Práctica 10: Tienda en Línea con API REST
+- **Descripción:** Implementación de carga dinámica de productos desde Fake Store API usando AJAX y JSON.
+- **Enlace:** [Ver Práctica 10](https://admirablepotato9.github.io/entregas-practicas/practica-10/)
+
 ---
 
 ## 🛠️ Habilidades Técnicas
 
 - **Lenguajes de Programación:** HTML, CSS, JavaScript, Python, C++
+- **Tecnologías Web:** AJAX, JSON, APIs REST, DOM Manipulation
+- **Herramientas:** Git, GitHub, Canva
 
 ## 📫 Contacto
 
@@ -54,7 +60,6 @@ Si deseas contactarme, no dudes en escribirme a mi correo electrónico o conecta
 
 - **Correo Electrónico:** [cdmx2977@amerike.edu.mx](mailto:cdmx2977@amerike.edu.mx)
 
-
 ## 🌟 Sobre Mí
 
-Soy una persona proactiva, creativa y con gran interés en el desarrollo de soluciones tecnológicas. Me gusta trabajar en equipo y siempre estoy buscando aprender nuevas tecnologías para mejorar mis habilidades. ¡Gracias por visitar mi repositorio!
+Soy una persona proactiva, creativa y con gran interés en el desarrollo de soluciones tecnológicas. Me gusta trabajar en equipo y siempre estoy buscando aprender nuevas tecnologías para mejorar mis habilidades.
