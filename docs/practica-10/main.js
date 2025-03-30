@@ -1,17 +1,5 @@
-// 1. Arreglo de productos
-const productos = [
-    { nombre: "Guantes de Boxeo Profesionales", precio: 89.99, stock: 15 },
-    { nombre: "Vendas para Manos", precio: 12.50, stock: 40 },
-    { nombre: "Bucal Personalizado", precio: 24.99, stock: 30 },
-    { nombre: "Saco de Boxeo Pesado", precio: 199.99, stock: 8 },
-    { nombre: "Protector Bucal Doble Capa", precio: 19.99, stock: 25 },
-    { nombre: "Short de MMA", precio: 34.99, stock: 20 },
-    { nombre: "Guantes de MMA", precio: 74.99, stock: 12 },
-    { nombre: "Rodilleras de Combate", precio: 45.99, stock: 18 },
-    { nombre: "Manoplas de Entrenamiento", precio: 29.99, stock: 20 },
-    { nombre: "Cuerda para Saltar Profesional", precio: 24.99, stock: 25 },
-    { nombre: "Set de Entrenamiento Completo", precio: 249.99, stock: 4 }
-];
+// 1. Arreglo de productos (ahora se cargará desde la API)
+let productos = [];
 
 // 2. Carrito de compras
 let carrito = [];
@@ -19,9 +7,55 @@ let carrito = [];
 // 3. Variables para el formulario
 let currentForm = 'login'; // 'login' o 'register'
 
-// 4. Función para mostrar productos
+// 4. Función para cargar productos desde la API
+async function cargarProductos() {
+    const loader = document.getElementById("loader");
+    loader.style.display = "block"; // Mostrar loader
+    
+    try {
+        // Hacer la petición a la API de Fake Store
+        const response = await fetch('https://fakestoreapi.com/products');
+        
+        if (!response.ok) {
+            throw new Error('Error al cargar los productos');
+        }
+        
+        const data = await response.json();
+        
+        // Mapear los datos de la API a nuestro formato
+        productos = data.map(producto => ({
+            id: producto.id,
+            nombre: producto.title,
+            precio: producto.price,
+            stock: Math.floor(Math.random() * 50) + 10, // Stock aleatorio entre 10 y 60
+            imagen: producto.image,
+            categoria: producto.category,
+            descripcion: producto.description
+        }));
+        
+        mostrarProductos();
+    } catch (error) {
+        console.error('Error:', error);
+        mostrarMensaje("Error al cargar los productos. " + error.message, "error");
+        
+        // Cargar productos de respaldo si la API falla
+        productos = [
+            { id: 1, nombre: "Guantes de Boxeo Profesionales", precio: 89.99, stock: 15, imagen: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" },
+            { id: 2, nombre: "Vendas para Manos", precio: 12.50, stock: 40, imagen: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg" },
+            { id: 3, nombre: "Bucal Personalizado", precio: 24.99, stock: 30, imagen: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" },
+            { id: 4, nombre: "Saco de Boxeo Pesado", precio: 199.99, stock: 8, imagen: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg" },
+            { id: 5, nombre: "Protector Bucal Doble Capa", precio: 19.99, stock: 25, imagen: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg" }
+        ];
+        
+        mostrarProductos();
+    } finally {
+        loader.style.display = "none"; // Ocultar loader
+    }
+}
+
+// 5. Función para mostrar productos
 function mostrarProductos() {
-    const contenedorTarjetas = document.querySelector(".productos");
+    const contenedorTarjetas = document.getElementById("productos");
     contenedorTarjetas.innerHTML = ""; // Limpiamos el contenedor de tarjetas
 
     // Generamos las tarjetas de productos
@@ -29,10 +63,10 @@ function mostrarProductos() {
         const tarjetaProducto = document.createElement("div");
         tarjetaProducto.className = "producto";
         tarjetaProducto.innerHTML = `
-            <img src="assets/images/${producto.nombre.toLowerCase()}.jpg" alt="${producto.nombre}">
+            <img src="${producto.imagen}" alt="${producto.nombre}">
             <div class="info">
                 <h3>${producto.nombre}</h3>
-                <p>Precio: $${producto.precio}</p>
+                <p>Precio: $${producto.precio.toFixed(2)}</p>
                 <p>Stock: ${producto.stock}</p>
                 <div class="cantidad">
                     <button onclick="cambiarCantidad(${index}, -1)">-</button>
@@ -46,7 +80,7 @@ function mostrarProductos() {
     });
 }
 
-// 5. Función para cambiar la cantidad
+// 6. Función para cambiar la cantidad
 function cambiarCantidad(index, delta) {
     const cantidadInput = document.getElementById(`cantidad-${index}`);
     let cantidad = parseInt(cantidadInput.value) + delta;
@@ -54,28 +88,27 @@ function cambiarCantidad(index, delta) {
     cantidadInput.value = cantidad;
 }
 
-// 6. Función para agregar productos al carrito
+// 7. Función para agregar productos al carrito
 function agregarAlCarrito(index) {
     const producto = productos[index];
     const cantidadInput = document.getElementById(`cantidad-${index}`);
     const cantidad = parseInt(cantidadInput.value);
 
     if (cantidad > 0 && cantidad <= producto.stock) {
-        const itemExistente = carrito.find(item => item.nombre === producto.nombre);
+        const itemExistente = carrito.find(item => item.id === producto.id);
         if (itemExistente) {
             itemExistente.cantidad += cantidad;
         } else {
             carrito.push({ ...producto, cantidad });
         }
         mostrarCarrito();
-        mostrarProductos();
         mostrarMensaje(`${cantidad} ${producto.nombre}(s) agregado(s) al carrito.`);
     } else {
         mostrarMensaje("Cantidad no válida o stock insuficiente.", "error");
     }
 }
 
-// 7. Función para mostrar el carrito
+// 8. Función para mostrar el carrito
 function mostrarCarrito() {
     const contenedorCarrito = document.getElementById("carrito");
     contenedorCarrito.innerHTML = "<h2>Carrito de Compras</h2>";
@@ -86,7 +119,7 @@ function mostrarCarrito() {
             contenedorCarrito.innerHTML += `
                 <div class="item">
                     <h3>${item.nombre}</h3>
-                    <p>Precio: $${item.precio}</p>
+                    <p>Precio: $${item.precio.toFixed(2)}</p>
                     <div class="cantidad">
                         <button onclick="ajustarCantidadCarrito(${index}, -1)">-</button>
                         <input type="number" id="cantidad-carrito-${index}" value="${item.cantidad}" min="1" max="${item.stock}">
@@ -110,12 +143,12 @@ function mostrarCarrito() {
     }
 }
 
-// 8. Función para calcular el total del carrito
+// 9. Función para calcular el total del carrito
 function calcularTotal() {
     return carrito.reduce((total, item) => total + item.precio * item.cantidad, 0);
 }
 
-// 9. Función para ajustar la cantidad en el carrito
+// 10. Función para ajustar la cantidad en el carrito
 function ajustarCantidadCarrito(index, delta) {
     const item = carrito[index];
     const nuevaCantidad = item.cantidad + delta;
@@ -130,17 +163,19 @@ function ajustarCantidadCarrito(index, delta) {
     }
 }
 
-// 10. Función para eliminar productos del carrito
+// 11. Función para eliminar productos del carrito
 function eliminarDelCarrito(index) {
     const item = carrito[index];
-    const producto = productos.find(p => p.nombre === item.nombre);
-    producto.stock += item.cantidad; // Devolvemos el stock al eliminar del carrito
+    const producto = productos.find(p => p.id === item.id);
+    if (producto) {
+        producto.stock += item.cantidad; // Devolvemos el stock al eliminar del carrito
+    }
     carrito.splice(index, 1);
     mostrarCarrito();
     mostrarProductos();
 }
 
-// 11. Función para procesar la compra
+// 12. Función para procesar la compra
 function procesarCompra() {
     if (carrito.length === 0) {
         mostrarMensaje("El carrito está vacío.", "error");
@@ -161,7 +196,7 @@ function procesarCompra() {
 
         // Actualizamos el stock después de procesar la compra
         carrito.forEach(item => {
-            const producto = productos.find(p => p.nombre === item.nombre);
+            const producto = productos.find(p => p.id === item.id);
             if (producto) {
                 producto.stock -= item.cantidad; // Restamos el stock
             }
@@ -173,9 +208,9 @@ function procesarCompra() {
     }, 5000); // 5000 milisegundos = 5 segundos
 }
 
-// 12. Función para mostrar mensajes en la UI
+// 13. Función para mostrar mensajes en la UI
 function mostrarMensaje(mensaje, tipo = "info") {
-    const contenedorMensaje = document      .getElementById("mensaje");
+    const contenedorMensaje = document.getElementById("mensaje");
     if (!contenedorMensaje) {
         console.error("El contenedor de mensajes no existe en el DOM.");
         return;
@@ -191,7 +226,7 @@ function mostrarMensaje(mensaje, tipo = "info") {
     }, 5000); // Cambiamos de 3000 a 5000 milisegundos (5 segundos)
 }
 
-// 13. Funciones para el formulario de login/registro
+// 14. Funciones para el formulario de login/registro
 function toggleLoginMenu() {
     const overlay = document.getElementById("overlay");
     const loginMenu = document.getElementById("loginMenu");
@@ -220,7 +255,7 @@ function toggleForms() {
     }
 }
 
-// 14. Validación del formulario de registro
+// 15. Validación del formulario de registro
 function validarRegistro() {
     let isValid = true;
     
@@ -294,7 +329,7 @@ function validarRegistro() {
     return isValid;
 }
 
-// 15. Validación del formulario de login
+// 16. Validación del formulario de login
 function validarLogin() {
     let isValid = true;
     
@@ -409,7 +444,7 @@ function restaurarFormulario(tipo) {
     }
 }
 
-// 16. Función para procesar el registro (actualizada)
+// 17. Función para procesar el registro (actualizada)
 function procesarRegistro(event) {
     event.preventDefault();
     
@@ -430,7 +465,7 @@ function procesarRegistro(event) {
     }
 }
 
-// 17. Función para procesar el login (actualizada)
+// 18. Función para procesar el login (actualizada)
 function procesarLogin(event) {
     event.preventDefault();
     
@@ -451,7 +486,7 @@ function procesarLogin(event) {
     }
 }
 
-// 18. Inicialización de eventos
+// 19. Inicialización de eventos
 function initEventListeners() {
     // Botón de login
     document.getElementById("loginBtn").addEventListener("click", toggleLoginMenu);
@@ -467,12 +502,6 @@ function initEventListeners() {
     // Formularios
     document.getElementById("registerForm").addEventListener("submit", procesarRegistro);
     document.getElementById("loginForm").addEventListener("submit", procesarLogin);
-}
-
-// 19. Inicializar la aplicación
-function init() {
-    mostrarProductos();
-    initEventListeners();
 }
 
 // 20. Función para alternar modo oscuro/claro
@@ -512,6 +541,7 @@ function checkSavedTheme() {
     if (savedTheme === 'true') {
         document.body.classList.add('dark-mode');
     }
+    updateLoaderColors();
 }
 
 // 24. Función para actualizar colores del loader
@@ -535,21 +565,13 @@ function updateLoaderColors() {
     }
 }
 
-// Modifica la función checkSavedTheme() para incluir updateLoaderColors
-function checkSavedTheme() {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme === 'true') {
-        document.body.classList.add('dark-mode');
-    }
-    updateLoaderColors();
-}
-
-// Modificar la función init() para incluir el tema:
-function init() {
-    mostrarProductos();
+// 25. Inicializar la aplicación
+async function init() {
+    await cargarProductos();
     initEventListeners();
     createThemeButton();
     checkSavedTheme();
 }
+
 // Iniciar la aplicación cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", init);
