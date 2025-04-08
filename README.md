@@ -48,7 +48,7 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 
 ### Práctica 11: Conceptualización del Proyecto Final
 - **Descripción:** Diseño conceptual de SIVIC - Sistema Integral de Vigilancia en Inmunodeficiencias Clínicas, con diagramas de flujo y especificaciones técnicas.
-- **Enlace:** [Ver Práctica 11]()
+- **Enlace:** [Ver Práctica 11](https://admirablepotato9.github.io/entregas-practicas/Mi-app.md/mi-app.md)
 
 ---
 
