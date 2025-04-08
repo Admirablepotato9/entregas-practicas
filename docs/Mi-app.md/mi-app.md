@@ -37,8 +37,7 @@ Aplicación web especializada en la gestión segura de clínicas de VIH, que int
 ## **Moodboard (Descripción Visual)**  
 ![moodboard](./assets/moodboard.png)
 - **Paleta de colores**:  
-  - Primarios: Azul HIPAA (#005EB8), Blanco Clínico (#F8F9FA).  
-  - Secundarios: Verde Esperanza (#50C878), Rojo Alerta (#FF6B6B).  
+  - 011627-fdfffc-2ec4b6-e71d36-ff9f1c
 - **Elementos UI**:  
   - Tarjetas modulares con sombras suaves.  
   - Iconos lineales en SVG (medicina, seguridad).  
@@ -118,10 +117,7 @@ Aplicación web especializada en la gestión segura de clínicas de VIH, que int
    - Alertar sobre interacciones entre medicamentos.  
 3. Firma digital:  
    - Usar código QR único del médico.  
-   - Generar PDF cifrado con sello de tiempo.  
-4. Notificación:  
-   - Enviar receta al paciente por correo seguro.  
-   - Registrar en blockchain para auditoría.  
+   - Generar PDF cifrado con sello de tiempo. 
 
 ---
 

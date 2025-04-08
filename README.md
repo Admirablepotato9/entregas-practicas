@@ -46,6 +46,10 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 - **Descripción:** Implementación de carga dinámica de productos desde Fake Store API usando AJAX y JSON.
 - **Enlace:** [Ver Práctica 10](https://admirablepotato9.github.io/entregas-practicas/practica-10/)
 
+### Práctica 11: Conceptualización del Proyecto Final
+- **Descripción:** Diseño conceptual de SIVIC - Sistema Integral de Vigilancia en Inmunodeficiencias Clínicas, con diagramas de flujo y especificaciones técnicas.
+- **Enlace:** [Ver Práctica 11]()
+
 ---
 
 ## 🛠️ Habilidades Técnicas
