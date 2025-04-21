@@ -11,19 +11,19 @@ A continuación, se detallan las entidades principales identificadas para la apl
 
 *   **usuarios** (ED)
     *   `usuario_id` (PK, SERIAL) - Identificador único del usuario
-    *   `email` (UQ, VARCHAR(100)) - Correo electrónico (debe ser único)
-    *   `password_hash` (VARCHAR(255)) - Contraseña cifrada
-    *   `nombre_completo` (VARCHAR(200)) - Nombre del usuario
-    *   `telefono` (VARCHAR(20)) - Teléfono de contacto
-    *   `rol` (VARCHAR(20)) - Rol del usuario ('Paciente', 'Medico', 'Admin')
+    *   `email` (UQ, VARCHAR) - Correo electrónico (debe ser único)
+    *   `password_hash` (VARCHAR) - Contraseña cifrada
+    *   `nombre_completo` (VARCHAR) - Nombre del usuario
+    *   `telefono` (VARCHAR) - Teléfono de contacto
+    *   `rol` (VARCHAR) - Rol del usuario ('Paciente', 'Medico', 'Admin')
     *   `fecha_creacion` (TIMESTAMP) - Fecha de registro
     *   `activo` (BOOLEAN) - Estado de la cuenta
 
 *   **perfiles_medicos** (ED)
     *   `perfil_medico_id` (PK, SERIAL) - Identificador único del perfil
     *   `usuario_id` (FK, UQ, INT) - Referencia al usuario con rol 'Medico'
-    *   `cedula_profesional` (UQ, VARCHAR(20)) - Cédula profesional (única)
-    *   `especialidad` (VARCHAR(100)) - Ej: Infectología, Psicología
+    *   `cedula_profesional` (UQ, VARCHAR) - Cédula profesional (única)
+    *   `especialidad` (VARCHAR) - Ej: Infectología, Psicología
     *   `codigo_qr_firma` (TEXT) - Código QR para firma digital (o ruta al archivo)
     *   `horarios_disponibles` (JSONB) - Estructura para definir disponibilidad (ej: `{"lunes": ["09:00-13:00", "15:00-18:00"], ...}`)
     *   `visible_directorio` (BOOLEAN) - Si aparece en el directorio público
@@ -35,8 +35,8 @@ A continuación, se detallan las entidades principales identificadas para la apl
     *   `paciente_id` (FK, INT) - Referencia al usuario Paciente
     *   `medico_id` (FK, INT) - Referencia al usuario Medico
     *   `fecha_hora_cita` (TIMESTAMP) - Fecha y hora programada
-    *   `especialidad_solicitada` (VARCHAR(100)) - Especialidad requerida por el paciente
-    *   `estado_cita` (VARCHAR(20)) - ('Programada', 'Confirmada', 'Cancelada', 'Completada', 'Urgencia')
+    *   `especialidad_solicitada` (VARCHAR) - Especialidad requerida por el paciente
+    *   `estado_cita` (VARCHAR) - ('Programada', 'Confirmada', 'Cancelada', 'Completada', 'Urgencia')
     *   `codigo_qr_acceso` (TEXT) - Código QR para la cita (opcional)
     *   `recordatorio_enviado` (BOOLEAN) - Si ya se envió recordatorio SMS/email
 
@@ -45,9 +45,9 @@ A continuación, se detallan las entidades principales identificadas para la apl
 *   **resultados_laboratorio** (ED)
     *   `resultado_id` (PK, SERIAL) - Identificador único del resultado
     *   `paciente_id` (FK, INT) - Referencia al usuario Paciente
-    *   `tipo_prueba` (VARCHAR(50)) - Ej: 'CD4', 'Carga Viral'
-    *   `valor_resultado` (VARCHAR(100)) - Valor numérico o textual
-    *   `unidades` (VARCHAR(20)) - Ej: 'células/mm³', 'copias/mL'
+    *   `tipo_prueba` (VARCHAR) - Ej: 'CD4', 'Carga Viral'
+    *   `valor_resultado` (VARCHAR) - Valor numérico o textual
+    *   `unidades` (VARCHAR) - Ej: 'células/mm³', 'copias/mL'
     *   `fecha_toma` (DATE) - Fecha de la toma de muestra
     *   `fecha_resultado` (DATE) - Fecha de emisión del resultado
 
@@ -55,9 +55,9 @@ A continuación, se detallan las entidades principales identificadas para la apl
     *   `tratamiento_id` (PK, SERIAL) - Identificador único del tratamiento/medicamento activo
     *   `paciente_id` (FK, INT) - Referencia al usuario Paciente
     *   `prescripcion_id` (FK, INT, NULLABLE) - Referencia a la prescripción que lo originó
-    *   `medicamento` (VARCHAR(150)) - Nombre del medicamento
-    *   `dosis` (VARCHAR(50)) - Dosis indicada
-    *   `frecuencia` (VARCHAR(100)) - Ej: 'Cada 12 horas', 'Una vez al día'
+    *   `medicamento` (VARCHAR) - Nombre del medicamento
+    *   `dosis` (VARCHAR) - Dosis indicada
+    *   `frecuencia` (VARCHAR) - Ej: 'Cada 12 horas', 'Una vez al día'
     *   `fecha_inicio` (DATE)
     *   `fecha_fin` (DATE, NULLABLE) - Si el tratamiento tiene fin o fue suspendido
     *   `activo` (BOOLEAN) - Si el tratamiento está actualmente en curso
@@ -67,7 +67,7 @@ A continuación, se detallan las entidades principales identificadas para la apl
     *   `tratamiento_id` (FK, INT) - Referencia al tratamiento asociado
     *   `paciente_id` (FK, INT) - Referencia al usuario Paciente
     *   `hora_programada` (TIME) - Hora a la que debe sonar la alerta/notificación
-    *   `dias_semana` (VARCHAR(50)) - Ej: 'L,M,X,J,V,S,D' o JSON `[1,2,3,4,5,6,7]`
+    *   `dias_semana` (VARCHAR) - Ej: 'L,M,X,J,V,S,D' o JSON `[1,2,3,4,5,6,7]`
     *   `activada` (BOOLEAN)
 
 *   **registros_sintomas** (ED)
@@ -76,7 +76,7 @@ A continuación, se detallan las entidades principales identificadas para la apl
     *   `fecha_registro` (DATE)
     *   `temperatura_celsius` (NUMERIC(4,2), NULLABLE)
     *   `efectos_secundarios` (TEXT, NULLABLE) - Descripción
-    *   `estado_animo` (VARCHAR(50), NULLABLE) - Ej: 'Bien', 'Regular', 'Mal', escala 1-5
+    *   `estado_animo` (VARCHAR, NULLABLE) - Ej: 'Bien', 'Regular', 'Mal', escala 1-5
     *   `notas_adicionales` (TEXT, NULLABLE)
 
 **Gestión Médica**
@@ -87,16 +87,16 @@ A continuación, se detallan las entidades principales identificadas para la apl
     *   `medico_id` (FK, INT) - Referencia al usuario Medico que prescribe
     *   `fecha_prescripcion` (TIMESTAMP)
     *   `diagnostico_asociado` (TEXT, NULLABLE)
-    *   `pdf_cifrado_ruta` (VARCHAR(255), NULLABLE) - Ruta al PDF generado
+    *   `pdf_cifrado_ruta` (VARCHAR, NULLABLE) - Ruta al PDF generado
     *   `firma_medico_ts` (TIMESTAMP, NULLABLE) - Timestamp de la firma digital
 
 *   **detalles_prescripcion** (ED)
     *   `detalle_id` (PK, SERIAL)
     *   `prescripcion_id` (FK, INT) - Referencia a la cabecera de la prescripción
-    *   `medicamento` (VARCHAR(150))
-    *   `dosis` (VARCHAR(50))
-    *   `frecuencia` (VARCHAR(100))
-    *   `duracion` (VARCHAR(100), NULLABLE) - Ej: 'Por 15 días', 'Uso continuo'
+    *   `medicamento` (VARCHAR)
+    *   `dosis` (VARCHAR)
+    *   `frecuencia` (VARCHAR)
+    *   `duracion` (VARCHAR, NULLABLE) - Ej: 'Por 15 días', 'Uso continuo'
     *   `indicaciones_adicionales` (TEXT, NULLABLE)
 
 *   **archivos_medicos** (ED)
@@ -199,7 +199,7 @@ Asignar rol "Paciente" automáticamente.
 
 Médicos:
 
-Validar Cédula Profesional (formato o contra registro externo si es posible).
+Validar Cédula Profesional.
 
 Validar dominio de correo institucional (@hospital.gob.mx).
 
@@ -272,10 +272,6 @@ Crear un registro diario de síntomas para un paciente.
 Leer historial de registros de síntomas de un paciente.
 
 Generar visualización (gráficos) del progreso de síntomas (lógica en backend/frontend).
-
-Alertas Médicas: Si la temperatura registrada es > 38°C por 2 días consecutivos, notificar al médico asignado (requiere lógica de chequeo periódico o trigger complejo).
-
-Asegurar que el historial solo sea accesible con autenticación fuerte (ej: 2FA o similar, mencionado como clave temporal SMS en Práctica 11).
 
 Prescripciones
 
