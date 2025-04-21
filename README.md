@@ -48,11 +48,11 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 
 ### Práctica 11: Conceptualización del Proyecto Final
 - **Descripción:** Diseño conceptual de SIVIC - Sistema Integral de Vigilancia en Inmunodeficiencias Clínicas, con diagramas de flujo y especificaciones técnicas.
-- **Enlace:** [Ver Práctica 11](./entregas-practicas/Mi-app.md) 
+- **Enlace:** [Ver Práctica 11](https://admirablepotato9.github.io/entregas-practicas/Mi-app.md/) 
 
 ### Práctica 12: Modelado de Datos - SIVIC
 - **Descripción:** Definición del Modelo Entidad-Relación, Diagrama Relacional (DBML) y Reglas de Negocio para la aplicación SIVIC.
-- **Enlace:** [Ver Práctica 12](./entregas-practicas/modelado-app.md)
+- **Enlace:** [Ver Práctica 12](https://admirablepotato9.github.io/entregas-practicas/modelado-app/)
 
 ---
 
