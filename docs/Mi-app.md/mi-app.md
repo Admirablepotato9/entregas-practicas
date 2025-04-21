@@ -35,7 +35,7 @@ Aplicación web especializada en la gestión segura de clínicas de VIH, que int
 --- 
 
 ## **Moodboard (Descripción Visual)**  
-![moodboard](./assets/moodboard.png)
+![moodboard](./Assets/moodboard.png)
 - **Paleta de colores**:  
   - 011627-fdfffc-2ec4b6-e71d36-ff9f1c
 - **Elementos UI**:  
@@ -135,6 +135,6 @@ Aplicación web especializada en la gestión segura de clínicas de VIH, que int
 
 
 ## Diagrama de flujo
-![moodboard](./assets/Diagramadeflujo.drawio.png)
+![Diagrama de flujo](./Assets/Diagramadeflujo.drawio.png)
 
 

@@ -1,6 +1,6 @@
 # Ricardo Robles Abad
 
-![Foto](Imagen.jpeg)
+![Mi Foto](./Imagen.jpeg)
 
 ¡Hola! 👋 Soy **Ricardo Robles Abad**, un apasionado del desarrollo web y la tecnología. Me encanta aprender y aplicar mis conocimientos para crear soluciones innovadoras y funcionales. Este repositorio contiene mis prácticas y proyectos realizados durante mi formación en desarrollo web.
 
@@ -16,11 +16,11 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 
 ### Práctica 2: Documentación de Proyecto
 - **Descripción:** Documentación de un proyecto en formato Markdown.
-- **Enlace:** [Ver Práctica 2](practica-2.md)
+- **Enlace:** [Ver Práctica 2](./practica-2.md) 
 
 ### Práctica 3: Avance de Proyecto
 - **Descripción:** Continuación de la documentación y avances del proyecto.
-- **Enlace:** [Ver Práctica 3](practica-3.md)
+- **Enlace:** [Ver Práctica 3](./practica-3.md) 
 
 ### Práctica 4: Curriculum Web
 - **Descripción:** Desarrollo de un currículum web estático utilizando HTML y CSS.
@@ -48,7 +48,11 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 
 ### Práctica 11: Conceptualización del Proyecto Final
 - **Descripción:** Diseño conceptual de SIVIC - Sistema Integral de Vigilancia en Inmunodeficiencias Clínicas, con diagramas de flujo y especificaciones técnicas.
-- **Enlace:** [Ver Práctica 11](https://admirablepotato9.github.io/entregas-practicas/Mi-app.md/mi-app.md)
+- **Enlace:** [Ver Práctica 11](./entregas-practicas/Mi-app.md) 
+
+### Práctica 12: Modelado de Datos - SIVIC
+- **Descripción:** Definición del Modelo Entidad-Relación, Diagrama Relacional (DBML) y Reglas de Negocio para la aplicación SIVIC.
+- **Enlace:** [Ver Práctica 12](./entregas-practicas/modelado-app.md)
 
 ---
 
@@ -56,7 +60,8 @@ A continuación, encontrarás los enlaces a las prácticas que he realizado:
 
 - **Lenguajes de Programación:** HTML, CSS, JavaScript, Python, C++
 - **Tecnologías Web:** AJAX, JSON, APIs REST, DOM Manipulation
-- **Herramientas:** Git, GitHub, Canva
+- **Herramientas:** Git, GitHub, Canva, dbdiagram.io
+- **Bases de Datos:** Modelado Entidad-Relación, DBML
 
 ## 📫 Contacto
 
