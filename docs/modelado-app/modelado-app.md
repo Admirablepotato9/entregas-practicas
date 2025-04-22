@@ -181,6 +181,9 @@ A continuación, se detallan las entidades principales identificadas de SIVIC, c
 
 **Referencia al Diagrama:**
 
+![Diagrama](./Assets/asdfgh.png)
+
+
 ---
 
 ## 4. Reglas de Negocio
