@@ -37,7 +37,6 @@ SIVIC, está diseñada para resolver el problema central de la desorganización 
 6.  **Seguimiento (Paciente):**
     *   El Paciente puede ver sus tratamientos activos (prescritos por el médico).
     *   Puede **configurar recordatorios** para tomar sus medicamentos (ej. "Tomar X medicamento a las 8:00 AM") y alertas opcionales de bajo stock (ej. "Recordarme resurtir Y cuando queden Z días"). El sistema le enviará notificaciones (in-app o método definido) basadas en esta configuración.
-    *   (Opcional) El Paciente puede registrar sus síntomas diarios/periódicos en la sección `registros_sintomas`.
 
 7.  **Administración (Admin):**
     *   El Administrador gestiona las solicitudes de registro de médicos (Aprueba/Rechaza).
